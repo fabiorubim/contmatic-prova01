@@ -36,66 +36,79 @@ public class Endereco {
 		return cep;
 	}
 	
+	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 	@Override
 	public int hashCode() {
-		int hash = 1;
-		if (this.endereco != null) {
-			hash *= this.endereco.hashCode();			
-		}
-		
-		if (numero != null) {
-			hash *= this.numero.hashCode();
-		}
-		
-		if (cidade != null) {
-			hash *= this.cidade.hashCode();
-		}
-		
-		if (cep != null) {
-			hash *= this.cep.hashCode();
-		}
-		
-		return Math.abs(hash);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
+		return result;
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		
-		if (this == obj) {
-            return true;
-        }
-		
-        if (!(obj instanceof Endereco)) {
-            return false;
-        }
-        
-        Endereco enderecoObj = (Endereco) obj;
-        
-        if (enderecoObj.endereco != this.endereco) {
-        	return false;
-        }
-        
-        if (enderecoObj.numero != this.numero) {
-        	return false;
-        }
-        
-        if (enderecoObj.cidade != this.cidade) {
-        	return false;
-        }
-        
-        if (enderecoObj.uf != this.uf) {
-        	return false;
-        }
-        
-        if (enderecoObj.cep != this.cep) {
-        	return false;
-        }	
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereco other = (Endereco) obj;
+		if (cep == null) {
+			if (other.cep != null)
+				return false;
+		} else if (!cep.equals(other.cep))
+			return false;
+		if (cidade == null) {
+			if (other.cidade != null)
+				return false;
+		} else if (!cidade.equals(other.cidade))
+			return false;
+		if (endereco == null) {
+			if (other.endereco != null)
+				return false;
+		} else if (!endereco.equals(other.endereco))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		if (uf == null) {
+			if (other.uf != null)
+				return false;
+		} else if (!uf.equals(other.uf))
+			return false;
 		return true;
 	}	
 	
 	@Override
 	public String toString() {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		
 		sb.append(this.endereco);
 		sb.append("\nNúmero: ");
@@ -109,4 +122,5 @@ public class Endereco {
 		
 		return sb.toString();
 	}
+	
 }
