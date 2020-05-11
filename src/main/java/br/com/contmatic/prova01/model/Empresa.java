@@ -129,10 +129,6 @@ public class Empresa {
 			return false;
 		}
 
-		if (empresaObj.razaoSocial != this.razaoSocial) {
-			return false;
-		}
-
 		if (empresaObj.nomeFantasia != this.nomeFantasia) {
 			return false;
 		}

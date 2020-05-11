@@ -337,16 +337,94 @@ public class EmpresaTest {
 	 
 	    assertTrue(mensagemGerada.contains(mensagemEsperada));
 	}
+	
+	@Test
+	@Order(43)
+	public void deve_passar_no_teste_ao_comparar_a_mesma_instancia() {
+		assertTrue(empresa.equals(empresa));
+	}
+	
+	@Test
+	@Order(44)
+	public void deve_passar_no_teste_quando_razao_social_for_diferente_da_outra_instancia() {
+		
+		Empresa empresa1 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		Empresa empresa2 = new Empresa("Razão Social 2", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		assertFalse(empresa1.equals(empresa2));
+	}
+	
+	@Test
+	@Order(45)
+	public void deve_passar_no_teste_quando_nome_fantasia_for_diferente_da_outra_instancia() {
+		
+		Empresa empresa1 = new Empresa("Razão Social", "Nome Fantasia 1", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		Empresa empresa2 = new Empresa("Razão Social", "Nome Fantasia 2", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		assertFalse(empresa1.equals(empresa2));
+	}
+	
+	@Test
+	@Order(46)
+	public void deve_passar_no_teste_quando_cnpj_for_diferente_da_outra_instancia() {
+		
+		Empresa empresa1 = new Empresa("Razão Social", "Nome Fantasia", "68.825.467/0001-04", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		Empresa empresa2 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		assertFalse(empresa1.equals(empresa2));
+	}
+	
+	@Test
+	@Order(47)
+	public void deve_passar_no_teste_quando_inscricao_estadual_for_diferente_da_outra_instancia() {
+		
+		Empresa empresa1 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.000", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		Empresa empresa2 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		assertFalse(empresa1.equals(empresa2));
+	}
+	
+	@Test
+	@Order(48)
+	public void deve_passar_no_teste_quando_endereco_for_diferente_da_outra_instancia() {
+		
+		Empresa empresa1 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Rua Padre Estevão Pernet", "215", "São Paulo", "SP", "03315-000");
+		
+		Empresa empresa2 = new Empresa("Razão Social", "Nome Fantasia", "52.144.080/0001-52", "935.995.860.240", 
+				"Avenida Paulista", "215", "São Paulo", "SP", "03315-000");
+		
+		assertFalse(empresa1.equals(empresa2));
+	}
+	
+	@Test
+	@Order(49)
+	public void deve_passar_no_teste_quando_as_instancias_forem_de_classes_diferentes() {
+		Departamento departamento = new Departamento("TI");
+		assertFalse(empresa.equals(departamento));
+	}
 			
 	@Disabled("Exemplo de utilização do @Ignore, no JUnit 5 é Disabled")
 	@Test
-	@Order(40)
+	@Order(45)
 	public void testGetCepEquals() {
 		assertEquals("03315-000", empresa.getEndereco().getCep());
 	}
 	
 	@AfterAll
 	public static void quantidadeDepartamentos() {
-		assertEquals(41, empresa.getDepartamentos().size());
+		assertEquals(48, empresa.getDepartamentos().size());
 	}
 }
