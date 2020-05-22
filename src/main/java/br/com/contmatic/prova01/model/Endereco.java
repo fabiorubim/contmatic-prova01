@@ -1,126 +1,98 @@
 
 package br.com.contmatic.prova01.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import br.com.contmatic.types.EnderecoType;
+
 public class Endereco {
-	private String endereco;
-	private String numero;
-	private String cidade;
-	private String uf;
-	private String cep;
-	
-	public Endereco(String endereco, String numero, String cidade, String uf, String cep) {
-		super();
-		this.endereco = endereco;
-		this.numero = numero;
-		this.cidade = cidade;
-		this.uf = uf;
-		this.cep = cep;
-	}
-	
-	public String getEndereco() {
-		return endereco;
-	}
+    private EnderecoType tipoEndereco;
+    @NotNull(message = "Endereço não deve ser nulo")
+    private String endereco;
+    @NotBlank(message = "Número do endereço não deve ser vazio/nulo")
+    private String numero;
+    @NotNull(message = "Cidade não deve ser nula")
+    private String cidade;
+    @NotBlank(message = "Estado não deve ser vazio/nulo")
+    private String uf;
+    @NotNull(message = "CEP não deve ser nulo")
+    private String cep;
 
-	public String getNumero() {
-		return numero;
-	}
+    public Endereco(String endereco, String numero, String cidade, String uf, String cep) {
+        super();
+        this.endereco = endereco;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.cep = cep;
+    }
 
-	public String getCidade() {
-		return cidade;
-	}
-	
-	public String getUf() {
-		return uf;
-	}
-	public String getCep() {
-		return cep;
-	}
-	
-	
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    public String getNumero() {
+        return numero;
+    }
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+    public String getCidade() {
+        return cidade;
+    }
 
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
+    public String getUf() {
+        return uf;
+    }
 
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
+    public String getCep() {
+        return cep;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
-		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
-		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
-		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
-		return result;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Endereco other = (Endereco) obj;
-		if (cep == null) {
-			if (other.cep != null)
-				return false;
-		} else if (!cep.equals(other.cep))
-			return false;
-		if (cidade == null) {
-			if (other.cidade != null)
-				return false;
-		} else if (!cidade.equals(other.cidade))
-			return false;
-		if (endereco == null) {
-			if (other.endereco != null)
-				return false;
-		} else if (!endereco.equals(other.endereco))
-			return false;
-		if (numero == null) {
-			if (other.numero != null)
-				return false;
-		} else if (!numero.equals(other.numero))
-			return false;
-		if (uf == null) {
-			if (other.uf != null)
-				return false;
-		} else if (!uf.equals(other.uf))
-			return false;
-		return true;
-	}	
-	
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(this.endereco);
-		sb.append("\nNúmero: ");
-		sb.append(this.numero);
-		sb.append("\nCidade: ");
-		sb.append(this.cidade);
-		sb.append("\nUF: ");
-		sb.append(this.uf);
-		sb.append("\nCEP: ");
-		sb.append(this.cep);
-		
-		return sb.toString();
-	}
-	
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public EnderecoType getTipoEndereco() {
+        return tipoEndereco;
+    }
+
+    public void setTipoEndereco(EnderecoType tipoEndereco) {
+        this.tipoEndereco = tipoEndereco;
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
+
 }
